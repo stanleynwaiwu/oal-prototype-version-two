@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Olisa Agbakoba Legal – OAL | Nigeria's Premier Law Firm</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    /* ── BRAND IDENTITY PALETTE ── */
+    --red:        #b01c2e;   /* OAL Red  – OA */
+    --red-deep:   #8a1522;   /* deeper red for hover */
+    --red-light:  #d4293f;   /* lighter red for accents */
+    --red-pale:   #fdf0f1;   /* very light red tint */
+    --navy:       #183b81;   /* OAL Navy – L & full name */
+    --navy-deep:  #0f2557;   /* deeper navy */
+    --navy-mid:   #234fa8;   /* mid navy */
+    --navy-pale:  #eef2fb;   /* very light navy tint */
+    --gold:       #c8a96e;   /* gold – accent only, NOT primary */
+    --gold-light: #dfc28d;
+    --gold-pale:  #f5edd9;
+    --off-white:  #f7f6f4;
+    --white:      #ffffff;
+    --text-dark:  #0f1f3d;
+    --text-mid:   #3d4f6b;
+    --text-light: #6b7a99;
+    --border:     #dde3f0;
+    --border-red: #f0d0d4;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: #fff; color: var(--text-dark); overflow-x: hidden; }
+  .serif { font-family: 'Cormorant Garamond', serif; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+
+  /* ════════════════════════════════
+     NAVBAR
+  ════════════════════════════════ */
+  #navbar {
+    position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+    transition: all 0.4s ease;
+  }
+  #navbar.top {
+    background: transparent;
+  }
+  #navbar.scrolled {
+    background: rgba(24, 59, 129, 0.97);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 30px rgba(0,0,0,0.2);
+  }
+
+  .nav-logo-main { font-family: 'Cormorant Garamond', serif; }
+
+  .nav-link {
+    position: relative; color: rgba(255,255,255,0.88);
+    font-size: 13px; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase;
+    cursor: pointer; transition: color 0.2s; white-space: nowrap; text-decoration: none;
+  }
+  .nav-link:hover { color: #fff; }
+  .nav-link::after {
+    content: ''; position: absolute; bottom: -4px; left: 0;
+    width: 0; height: 2px; background: var(--red-light);
+    transition: width 0.3s ease;
+  }
+  .nav-link:hover::after { width: 100%; }
+  .nav-link.active { color: #fff; border-bottom: 2px solid var(--red-light); padding-bottom: 2px; }
+  .nav-link.active::after { display: none; }
+
+  .nav-item { position: relative; }
+  .dropdown {
+    position: absolute; top: calc(100% + 14px); left: 0;
+    background: var(--navy);
+    border-top: 2px solid var(--red);
+    min-width: 210px; border-radius: 0 0 4px 4px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    opacity: 0; visibility: hidden; transform: translateY(8px);
+    transition: all 0.25s ease; z-index: 200;
+  }
+  .nav-item:hover > .dropdown, .dropdown:hover { opacity: 1; visibility: visible; transform: translateY(0); }
+  .dropdown a {
+    display: block; padding: 11px 20px; font-size: 13px;
+    color: rgba(255,255,255,0.78); letter-spacing: 0.02em;
+    transition: all 0.2s; border-bottom: 1px solid rgba(255,255,255,0.06); text-decoration: none;
+  }
+  .dropdown a:last-child { border-bottom: none; }
+  .dropdown a:hover { color: #fff; background: rgba(176,28,46,0.15); padding-left: 26px; }
+  .chev { display: inline-block; margin-left: 4px; font-size: 10px; vertical-align: middle; transition: transform 0.2s; }
+  .nav-item:hover .chev { transform: rotate(180deg); }
+
+  /* Mobile */
+  #mobileMenu { max-height: 0; overflow: hidden; transition: max-height 0.45s cubic-bezier(0.4,0,0.2,1); background: var(--navy); }
+  #mobileMenu.open { max-height: 900px; }
+  .hamburger { background: none; border: none; cursor: pointer; padding: 4px; }
+  .hamburger span { display: block; width: 22px; height: 2px; background: #fff; margin: 5px 0; }
+  @media (max-width: 900px) { .hidden-mobile { display: none !important; } .show-mobile { display: block !important; } }
+  @media (min-width: 901px) { .hidden-mobile { display: flex !important; } .show-mobile { display: none !important; } }
+
+  /* ════════════════════════════════
+     HERO
+  ════════════════════════════════ */
+  #hero {
+    position: relative; height: 100vh; min-height: 640px;
+    display: flex; align-items: center; overflow: hidden;
+  }
+  #hero-img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%; object-fit: cover; object-position: center 30%;
+  }
+  /* Navy-dominant gradient overlay — brand color */
+  #hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(15, 37, 87, 0.92) 0%,
+      rgba(24, 59, 129, 0.80) 50%,
+      rgba(15, 37, 87, 0.88) 100%
+    );
+  }
+  /* Red accent strip on left edge */
+  #hero-red-strip {
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 5px;
+    background: linear-gradient(to bottom, var(--red) 0%, var(--red-deep) 100%);
+    z-index: 2;
+  }
+  #hero-content { position: relative; z-index: 3; width: 100%; }
+
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(176,28,46,0.2);
+    border: 1px solid rgba(176,28,46,0.5);
+    color: #ffb3bc;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 6px 16px; border-radius: 2px; margin-bottom: 28px;
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(42px, 6vw, 84px);
+    font-weight: 700; line-height: 1.05; color: #fff; letter-spacing: -0.01em;
+  }
+  .hero-title em { font-style: italic; color: #ffb3bc; }
+
+  /* ════════════════════════════════
+     STAT BAR
+  ════════════════════════════════ */
+  .stat-bar { background: var(--navy); padding: 48px 0; border-top: 3px solid var(--red); }
+  .stat-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px; font-weight: 700; color: #fff; line-height: 1;
+  }
+  .stat-label { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-top: 6px; }
+
+  /* ════════════════════════════════
+     SHARED
+  ════════════════════════════════ */
+  .section-label { font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--red); margin-bottom: 14px; }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(30px, 3.5vw, 50px); font-weight: 700; line-height: 1.12; color: var(--navy); }
+  .navy-line { width: 48px; height: 2px; background: var(--navy); margin-bottom: 28px; }
+  .red-line { width: 48px; height: 2px; background: var(--red); margin-bottom: 28px; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+
+  /* ════════════════════════════════
+     BUTTONS
+  ════════════════════════════════ */
+  .btn-red {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--red); color: #fff;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 14px 28px; border-radius: 2px; border: none; cursor: pointer;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s; text-decoration: none;
+  }
+  .btn-red:hover { background: var(--red-deep); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(176,28,46,0.35); }
+
+  .btn-navy {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--navy); color: #fff;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 14px 28px; border-radius: 2px; border: none; cursor: pointer;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s; text-decoration: none;
+  }
+  .btn-navy:hover { background: var(--navy-deep); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(24,59,129,0.35); }
+
+  .btn-outline-white {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent; color: #fff;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 13px 28px; border-radius: 2px; border: 1px solid rgba(255,255,255,0.4);
+    cursor: pointer; transition: all 0.2s; text-decoration: none;
+  }
+  .btn-outline-white:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.8); }
+
+  .btn-outline-navy {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent; color: var(--navy);
+    font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 13px 28px; border-radius: 2px; border: 1px solid var(--navy);
+    cursor: pointer; transition: all 0.2s; text-decoration: none;
+  }
+  .btn-outline-navy:hover { background: var(--navy); color: #fff; }
+
+  .btn-outline-red {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent; color: var(--red);
+    font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 13px 28px; border-radius: 2px; border: 1px solid var(--red);
+    cursor: pointer; transition: all 0.2s; text-decoration: none;
+  }
+  .btn-outline-red:hover { background: var(--red); color: #fff; }
+
+  /* ════════════════════════════════
+     SCROLL ANIMATION
+  ════════════════════════════════ */
+  .fade-up { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+  .fade-up.delay-1 { transition-delay: 0.1s; }
+  .fade-up.delay-2 { transition-delay: 0.2s; }
+  .fade-up.delay-3 { transition-delay: 0.3s; }
+
+  /* ════════════════════════════════
+     ABOUT SECTION
+  ════════════════════════════════ */
+  .about-img-wrap { position: relative; }
+  .about-img-wrap::before {
+    content: ''; position: absolute; top: -16px; left: -16px;
+    width: 55%; height: 55%; border: 2px solid var(--red); border-radius: 2px; z-index: 0;
+  }
+  .about-img-wrap img { position: relative; z-index: 1; width: 100%; height: 480px; object-fit: cover; border-radius: 2px; }
+  .about-accent-box {
+    position: absolute; z-index: 2; bottom: -24px; right: -24px;
+    background: var(--navy); padding: 24px 28px; border-radius: 2px;
+    box-shadow: 0 16px 40px rgba(24,59,129,0.25);
+  }
+
+  /* ════════════════════════════════
+     PRACTICE CARDS
+  ════════════════════════════════ */
+  .practice-card { position: relative; overflow: hidden; border-radius: 4px; cursor: pointer; }
+  .practice-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease; }
+  .practice-card:hover img { transform: scale(1.06); }
+  .practice-card-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(15,37,87,0.94) 0%, rgba(15,37,87,0.3) 55%, transparent 100%);
+    transition: background 0.3s;
+  }
+  .practice-card:hover .practice-card-overlay { background: linear-gradient(to top, rgba(15,37,87,0.98) 0%, rgba(15,37,87,0.55) 60%, rgba(15,37,87,0.1) 100%); }
+  .practice-card-body { position: absolute; bottom: 0; left: 0; right: 0; padding: 28px; }
+  .practice-card-tag {
+    display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    color: #ffb3bc; background: rgba(176,28,46,0.2); border: 1px solid rgba(176,28,46,0.4);
+    padding: 3px 8px; border-radius: 2px; margin-bottom: 8px;
+  }
+  .practice-card-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 700; color: #fff; line-height: 1.2; }
+  .practice-card-arrow {
+    display: inline-flex; align-items: center; gap: 6px; color: #ffb3bc;
+    font-size: 12px; font-weight: 500; margin-top: 10px;
+    opacity: 0; transform: translateX(-6px); transition: all 0.3s ease;
+  }
+  .practice-card:hover .practice-card-arrow { opacity: 1; transform: translateX(0); }
+
+  /* ════════════════════════════════
+     MVV SECTION
+  ════════════════════════════════ */
+  .mvv-section { background: var(--navy); padding: 100px 0; }
+  .mvv-card {
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 4px; padding: 40px 36px;
+    background: rgba(255,255,255,0.04);
+    border-top: 3px solid var(--red);
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .mvv-card:hover { background: rgba(255,255,255,0.08); }
+  .mvv-icon { width: 48px; height: 48px; border: 1px solid rgba(176,28,46,0.4); border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 24px; }
+  .mvv-title { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 700; color: #fff; margin-bottom: 14px; }
+  .mvv-text { font-size: 14px; color: rgba(255,255,255,0.62); line-height: 1.8; }
+
+  /* ════════════════════════════════
+     INSIGHT CARDS
+  ════════════════════════════════ */
+  .insight-card { background: #fff; border: 1px solid var(--border); border-radius: 4px; overflow: hidden; transition: box-shadow 0.3s, transform 0.3s; }
+  .insight-card:hover { box-shadow: 0 20px 50px rgba(24,59,129,0.1); transform: translateY(-4px); }
+  .insight-card img { width: 100%; height: 220px; object-fit: cover; transition: transform 0.5s; }
+  .insight-card:hover img { transform: scale(1.04); }
+  .insight-tag { display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--red); margin-bottom: 8px; }
+  .insight-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 700; color: var(--navy); line-height: 1.3; transition: color 0.2s; }
+  .insight-card:hover .insight-title { color: var(--red); }
+
+  /* ════════════════════════════════
+     ACADEMY SECTION
+  ════════════════════════════════ */
+  .academy-section { background: var(--off-white); padding: 100px 0; }
+
+  /* ════════════════════════════════
+     CTA SECTION
+  ════════════════════════════════ */
+  .cta-section { background: var(--red); padding: 90px 0; position: relative; overflow: hidden; }
+  .cta-section::before {
+    content: 'OAL'; position: absolute; right: -20px; top: 50%; transform: translateY(-50%);
+    font-family: 'Cormorant Garamond', serif; font-size: 280px; font-weight: 700;
+    color: rgba(255,255,255,0.06); line-height: 1; pointer-events: none; user-select: none;
+  }
+
+  /* ════════════════════════════════
+     FOOTER
+  ════════════════════════════════ */
+  .footer { background: var(--navy-deep); padding: 80px 0 40px; }
+  .footer-link { color: rgba(255,255,255,0.45); font-size: 13px; transition: color 0.2s; display: block; margin-bottom: 10px; text-decoration: none; }
+  .footer-link:hover { color: #fff; }
+  .footer-heading { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 10px; }
+
+  @media (max-width: 768px) {
+    .container { padding: 0 20px; }
+    .hero-title { font-size: clamp(32px, 9vw, 48px); }
+    .section-title { font-size: clamp(26px, 6vw, 38px); }
+    .stat-number { font-size: 38px; }
+    .about-img-wrap::before { display: none; }
+    .about-accent-box { position: static; margin-top: 20px; display: inline-block; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════ NAVBAR ════════════ -->
+<header id="navbar" class="top">
+  <div class="container">
+    <div style="display:flex; align-items:center; justify-content:space-between; padding:20px 0;">
+
+      <!-- Logo: OA(red) L(navy-on-white becomes white here since navbar is dark) -->
+      <a href="v2-index.html" style="text-decoration:none; display:flex; flex-direction:column; align-items:center; gap:3px;">
+        <div class="nav-logo-main" style="font-size:30px; font-weight:700; line-height:1; letter-spacing:0.04em;">
+          <span style="color:#e05060;">OA</span><span style="color:#7fa8ff;">L</span>
+        </div>
+        <div style="font-size:7px; letter-spacing:0.18em; color:rgba(255,255,255,0.45); text-transform:uppercase; font-weight:500; text-align:center;">Olisa Agbakoba Legal</div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav style="display:flex; align-items:center; gap:36px;" class="hidden-mobile">
+        <a href="v2-index.html" class="nav-link active">Home</a>
+        <div class="nav-item">
+          <span class="nav-link">About <span class="chev">▾</span></span>
+          <div class="dropdown">
+            <a href="v2-about.html">About Us</a>
+            <a href="v2-our-people.html">Our People</a>
+            <a href="#">Careers</a>
+            <a href="#">Responsibility</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <span class="nav-link">Services <span class="chev">▾</span></span>
+          <div class="dropdown">
+            <a href="v2-practice-areas.html">Practice Areas</a>
+            <a href="#">Sectors</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <span class="nav-link">Academy <span class="chev">▾</span></span>
+          <div class="dropdown">
+            <a href="#">Programs</a>
+            <a href="#">Publications</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <span class="nav-link">Insights <span class="chev">▾</span></span>
+          <div class="dropdown">
+            <a href="#">Articles</a>
+            <a href="#">News</a>
+            <a href="#">Publications</a>
+            <a href="#">Videos</a>
+            <a href="#">Regulatory Updates</a>
+          </div>
+        </div>
+        <a href="v2-contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <a href="#" class="btn-red hidden-mobile" style="font-size:11px; padding:11px 22px;">Book Consultation</a>
+
+      <button class="hamburger show-mobile" onclick="toggleMenu()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu">
+    <div style="padding:8px 20px 24px;">
+      <a href="v2-index.html" style="display:block; padding:14px 0; color:rgba(255,255,255,0.8); font-size:14px; border-bottom:1px solid rgba(255,255,255,0.08); text-decoration:none;">Home</a>
+      <details style="border-bottom:1px solid rgba(255,255,255,0.08);">
+        <summary style="padding:14px 0; color:rgba(255,255,255,0.8); font-size:14px; cursor:pointer; list-style:none; display:flex; justify-content:space-between;">About <span>▾</span></summary>
+        <div style="padding-bottom:8px;">
+          <a href="v2-about.html" style="display:block; padding:10px 0 10px 16px; color:rgba(255,255,255,0.55); font-size:13px; text-decoration:none;">About Us</a>
+          <a href="v2-our-people.html" style="display:block; padding:10px 0 10px 16px; color:rgba(255,255,255,0.55); font-size:13px; text-decoration:none;">Our People</a>
+          <a href="#" style="display:block; padding:10px 0 10px 16px; color:rgba(255,255,255,0.55); font-size:13px; text-decoration:none;">Careers</a>
+        </div>
+      </details>
+      <details style="border-bottom:1px solid rgba(255,255,255,0.08);">
+        <summary style="padding:14px 0; color:rgba(255,255,255,0.8); font-size:14px; cursor:pointer; list-style:none; display:flex; justify-content:space-between;">Services <span>▾</span></summary>
+        <div style="padding-bottom:8px;">
+          <a href="v2-practice-areas.html" style="display:block; padding:10px 0 10px 16px; color:rgba(255,255,255,0.55); font-size:13px; text-decoration:none;">Practice Areas</a>
+          <a href="#" style="display:block; padding:10px 0 10px 16px; color:rgba(255,255,255,0.55); font-size:13px; text-decoration:none;">Sectors</a>
+        </div>
+      </details>
+      <details style="border-bottom:1px solid rgba(255,255,255,0.08);">
+        <summary style="padding:14px 0; color:rgba(255,255,255,0.8); font-size:14px; cursor:pointer; list-style:none; display:flex; justify-content:space-between;">Insights <span>▾</span></summary>
+        <div style="padding-bottom:8px;">
+          <a href="#" style="display:block; padding:10px 0 10px 16px; color:rgba(255,255,255,0.55); font-size:13px; text-decoration:none;">Articles</a>
+          <a href="#" style="display:block; padding:10px 0 10px 16px; color:rgba(255,255,255,0.55); font-size:13px; text-decoration:none;">News</a>
+        </div>
+      </details>
+      <a href="v2-contact.html" style="display:block; padding:14px 0; color:rgba(255,255,255,0.8); font-size:14px; border-bottom:1px solid rgba(255,255,255,0.08); text-decoration:none;">Contact</a>
+      <a href="#" class="btn-red" style="width:100%; justify-content:center; margin-top:20px; font-size:12px;">Book Consultation</a>
+    </div>
+  </div>
+</header>
+
+<!-- ════════════════════════════════════════ HERO ══════════════ -->
+<section id="hero">
+  <img id="hero-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVj_GJwsb4vV-XW9RRX4HCkXKdFfNpwmigMzfL4zsKaQCpC86Eubg7sp5lthXoGtS7Z7H5lw7sAyKq2DRG9wrdelcwhG1q2qpCDau8E1lCC8AqrpY-4d5162oUotBg9vtuaVbSNvj8JQxnEYywAPFz6USVDO3x8MAeLDeFYAAjboU6Y5UDcwlFMA-TJpqGcYGcL-UY5GgdZGa6pxV9fL9hPu4oj-af4sS8tk9mYb7CtOCGB_UCjX6vbrqTcwlIcTDERsrw6K3i-0jh" alt="OAL Law Firm"/>
+  <div id="hero-overlay"></div>
+  <div id="hero-red-strip"></div>
+
+  <div id="hero-content" class="container">
+    <div style="max-width:760px;">
+      <div class="hero-tag">
+        <span style="width:6px; height:6px; border-radius:50%; background:var(--red-light); display:inline-block;"></span>
+        Nigeria's Premier Legal Solutions Provider
+      </div>
+      <h1 class="hero-title">
+        Trusted Expertise,<br/>
+        <em>Transformative</em><br/>
+        Legal Solutions.
+      </h1>
+      <p style="font-size:16px; color:rgba(255,255,255,0.68); margin-top:24px; max-width:520px; line-height:1.75;">
+        Olisa Agbakoba Legal provides strategic legal guidance across corporate, commercial, energy, maritime, and regulatory sectors — with the authority of Nigeria's foremost tier-one law firm.
+      </p>
+      <div style="display:flex; gap:14px; flex-wrap:wrap; margin-top:40px;">
+        <a href="#" class="btn-red">Book a Consultation <span>→</span></a>
+        <a href="#practice" class="btn-outline-white">Explore Practice Areas</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div style="position:absolute; bottom:36px; left:50%; transform:translateX(-50%); z-index:3; display:flex; flex-direction:column; align-items:center; gap:6px;">
+    <div style="font-size:10px; letter-spacing:0.15em; color:rgba(255,255,255,0.35); text-transform:uppercase;">Scroll</div>
+    <div style="width:1px; height:40px; background:linear-gradient(to bottom, rgba(176,28,46,0.7), transparent);"></div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════ STAT BAR ══════════ -->
+<section class="stat-bar">
+  <div class="container">
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:0;" id="stats-grid">
+      <div style="text-align:center; padding:0 20px; border-right:1px solid rgba(255,255,255,0.1);" class="fade-up">
+        <div class="stat-number">500+</div>
+        <div class="stat-label">Clients Served</div>
+      </div>
+      <div style="text-align:center; padding:0 20px; border-right:1px solid rgba(255,255,255,0.1);" class="fade-up delay-1">
+        <div class="stat-number">45+</div>
+        <div class="stat-label">Years of Excellence</div>
+      </div>
+      <div style="text-align:center; padding:0 20px; border-right:1px solid rgba(255,255,255,0.1);" class="fade-up delay-2">
+        <div class="stat-number">50+</div>
+        <div class="stat-label">Legal Experts</div>
+      </div>
+      <div style="text-align:center; padding:0 20px;" class="fade-up delay-3">
+        <div class="stat-number">12+</div>
+        <div class="stat-label">Senior Partners</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════ ABOUT ═════════════ -->
+<section style="background:#fff; padding:100px 0;" id="about">
+  <div class="container">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center;" id="about-grid">
+
+      <!-- Image -->
+      <div class="about-img-wrap fade-up">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwOomu2e1pQkYGg3qK0tteesuOIr93SgicJxU_GYY0qVjRwPvgeq_ioPY5lIuYPZPZwPL72KjHB8_FLJBq2Rb0FrfCBXXPR1JPQrzCohZeJKO8sXmKbHDH0xlAsDX0hJyRwLcOq35KmS28dRnlECz7LWET2QR8Hc9IUrS9Uyn7Ry-cHsC082XG2v5Ag1K5Nwe00Sl3eyPa3-hOya5AHgjB4UQD1Al_CeAFVBIkAqXTBB4o-4Jp5NajserBqB71mWPqSpHluF0ZWEaR" alt="OAL Team"/>
+        <div class="about-accent-box">
+          <div style="font-family:'Cormorant Garamond',serif; font-size:36px; font-weight:700; color:#fff; line-height:1;">Tier 1</div>
+          <div style="font-size:10px; color:rgba(255,255,255,0.55); letter-spacing:0.12em; text-transform:uppercase; margin-top:4px;">Law Firm · Nigeria</div>
+        </div>
+      </div>
+
+      <!-- Text -->
+      <div class="fade-up delay-1">
+        <div class="section-label">About OAL</div>
+        <div class="navy-line"></div>
+        <h2 class="section-title" style="margin-bottom:24px;">A Leading Law Firm<br/>in Lagos, Nigeria</h2>
+        <p style="color:var(--text-mid); line-height:1.85; font-size:15px; margin-bottom:16px;">
+          Olisa Agbakoba Legal (OAL) is a world-class legal solutions provider serving clients across diverse sectors of the Nigerian economy. We combine decades of expertise with innovative thinking to deliver results.
+        </p>
+        <p style="color:var(--text-mid); line-height:1.85; font-size:15px; margin-bottom:36px;">
+          Our multidisciplinary practice groups ensure that our clients' commercial needs are satisfied promptly and professionally — always conforming to the highest ethical standards in legal service.
+        </p>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:36px;">
+          <div style="padding:18px; background:var(--navy-pale); border-radius:2px; border-left:3px solid var(--navy);">
+            <strong style="display:block; color:var(--navy); font-size:13px; margin-bottom:4px;">Our Mission</strong>
+            <span style="font-size:12px; color:var(--text-mid); line-height:1.6;">Innovative, world-class legal solutions delivered with excellence and ethics.</span>
+          </div>
+          <div style="padding:18px; background:var(--red-pale); border-radius:2px; border-left:3px solid var(--red);">
+            <strong style="display:block; color:var(--red); font-size:13px; margin-bottom:4px;">Our Vision</strong>
+            <span style="font-size:12px; color:var(--text-mid); line-height:1.6;">Nigeria's most trusted and inclusive legal solutions provider globally.</span>
+          </div>
+        </div>
+
+        <a href="v2-about.html" class="btn-navy">Learn More About OAL</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════ PRACTICE AREAS ════ -->
+<section style="background:var(--off-white); padding:100px 0;" id="practice">
+  <div class="container">
+    <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:56px;">
+      <div class="fade-up">
+        <div class="section-label">Specialisations</div>
+        <div class="navy-line"></div>
+        <h2 class="section-title">Core Practice Areas</h2>
+      </div>
+      <a href="v2-practice-areas.html" class="btn-outline-navy fade-up delay-1" style="white-space:nowrap;">View All Areas</a>
+    </div>
+
+    <!-- Bento Grid -->
+    <div style="display:grid; grid-template-columns:repeat(12,1fr); grid-template-rows:280px 280px; gap:16px;" id="bento-grid">
+
+      <div class="practice-card fade-up" style="grid-column:span 7; grid-row:span 1;">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuArDQhhG42s1dVn2KkyG8HLeBJcQ8po6aUu8YLcXMxslS4Ki-SIU7zDbe1IhwxOJfWwjEeEPUQ59CS8Ci5r_2U5wrK6aAuG5lmp1_kqy-vNITN4dgzfXNndSKkILU-Qnim0z0pt_-35lz8yRZ0achqeX1jySLYxLO79QmnjxTZJsgMTVI8LTEEYPpVoPzYRDMWF0vSp7ZCH2GhYv-0sS1wRn3_mgsilx1FGLPQGtZBYQoMp75lJggU6JE9BjNxcsJaGMabQLhKqxRHY" alt="Energy"/>
+        <div class="practice-card-overlay"></div>
+        <div class="practice-card-body">
+          <span class="practice-card-tag">Energy Law</span>
+          <h3 class="practice-card-title" style="font-size:28px;">Energy & Natural Resources</h3>
+          <p style="color:rgba(255,255,255,0.68); font-size:13px; margin-top:8px; max-width:380px; line-height:1.6;">Navigating Nigeria's oil, gas, and renewable energy sectors with authoritative legal expertise.</p>
+          <div class="practice-card-arrow">Explore this area →</div>
+        </div>
+      </div>
+
+      <div class="practice-card fade-up delay-1" style="grid-column:span 5; grid-row:span 1;">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUOLjUbajoyBzRG513s8kg9eoIQ9PupTndA1TU3s5BWrc8sWRXwp5w9baoBfpU1mETE-FK8inG4X0-BggUmb5CC1oIC-EW0oXPgRfUfqe4Fv5noggZRZ4GtZSpI2mD9rNP6tU4XkN7tn9hlbhdwntnx4UMZdX5KqSyUrTur4OsYd1LC8iS_sE2aPx6Ns13a5RzgiVsiSdr0Fr8S5O7mUu1H2Ocx4gu80xg4Qg24xyCrKSyKlEV6q4CzYVCd60b0WBDUtwwXizTPiAn" alt="Maritime"/>
+        <div class="practice-card-overlay"></div>
+        <div class="practice-card-body">
+          <span class="practice-card-tag">Maritime</span>
+          <h3 class="practice-card-title">Maritime Law</h3>
+          <div class="practice-card-arrow">Explore this area →</div>
+        </div>
+      </div>
+
+      <div class="practice-card fade-up delay-1" style="grid-column:span 5; grid-row:span 1;">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZ9Dr8Qldx_4wxV7ku5XwQziJ02dW2sz2yeJCMi1gNniPwjRzolzZyNst1sD_KJWSXH0x79By43nwXmJlV2wWBKlw4RP4jCwQ2IZkj_-gCXh-TWVfg7RjYt8RwDf6g0D9pXX3My4x8s7HNNEZ3-8xjXuWqdJ8txPsv3G3SadnOjPUSgwZGTWHdXaviGwGipZWkKwzloPX2UrWkgi9Q3zBRLDtQMeco4uCRs04sEgXVVQXnUVvTYcFnl3Nj1QJqpxObJMbLifvzahnc" alt="Corporate"/>
+        <div class="practice-card-overlay"></div>
+        <div class="practice-card-body">
+          <span class="practice-card-tag">Corporate</span>
+          <h3 class="practice-card-title">Corporate & Commercial Law</h3>
+          <div class="practice-card-arrow">Explore this area →</div>
+        </div>
+      </div>
+
+      <div class="practice-card fade-up delay-2" style="grid-column:span 4; grid-row:span 1;">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjmUDNE0zm3qQwhXBh8lSOzXDpllKCtLgi8oGnfhDl6_jITMIdqUBdeEO70Gt0gqlY0FRdXQllKiI4-Y_7Cj7H9TP19-wWa__LuAZxwWTN7_6Qvt6e_gj0DedS6MaxJIY-VAtCvontB2MTgCfd6ni4uK9ipUQCmXaAXuZRyRriSrS3h8ywXfrmJ3VgIg0d9NByskvgGhyn6Wlqmz5svRJN9Dr_g3LgTheZIYD21rPjgOhZuPoSt7A4cuv1oC8TzAEUjTg8TWt33DER" alt="Litigation"/>
+        <div class="practice-card-overlay"></div>
+        <div class="practice-card-body">
+          <span class="practice-card-tag">Litigation</span>
+          <h3 class="practice-card-title">Litigation & ADR</h3>
+          <div class="practice-card-arrow">Explore →</div>
+        </div>
+      </div>
+
+      <div class="practice-card fade-up delay-3" style="grid-column:span 3; grid-row:span 1;">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdH7DcKeCgZYgWYwWdPZXnphTW_Um4t2va-NfhvNSoDQVRgu827B2oNGUn4DRRXK81qjNpZw7O5pHOorDJQpgOUURNiAw7rNz0UzwfdO0Cqe-WzWlY4qwwlG0lQmoqLq4_EbvpczAHX_znA4uw9QA1ZD4_ZTp6mIMQ8hn3lR7gOZZcrkf3a44rE2wf-7doRA3TySm_QBbIlsi9-JLjWJc-_3nNzdrAbfRguoHjYRNBXZLl3F1Ci2GUY2bLMZojKoV5on3xU_Q0kgU-" alt="Debt Recovery"/>
+        <div class="practice-card-overlay"></div>
+        <div class="practice-card-body">
+          <span class="practice-card-tag">Finance</span>
+          <h3 class="practice-card-title">Debt Recovery</h3>
+          <div class="practice-card-arrow">Explore →</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════ MVV ═══════════════ -->
+<section class="mvv-section">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:60px;" class="fade-up">
+      <div class="section-label" style="color:#ffb3bc;">Our Foundation</div>
+      <div class="red-line" style="margin:0 auto 14px;"></div>
+      <h2 class="section-title" style="color:#fff;">What Drives Us</h2>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:24px;" id="mvv-grid">
+      <div class="mvv-card fade-up">
+        <div class="mvv-icon">🎯</div>
+        <h3 class="mvv-title">Our Mission</h3>
+        <p class="mvv-text">To provide innovative and world-class legal solutions that meet our clients' commercial needs promptly, professionally, and ethically — with excellence and unwavering dedication.</p>
+      </div>
+      <div class="mvv-card fade-up delay-1">
+        <div class="mvv-icon">🌍</div>
+        <h3 class="mvv-title">Our Vision</h3>
+        <p class="mvv-text">To be recognised as Nigeria's most trusted and inclusive legal solutions provider, setting the benchmark for excellence and innovation in legal practice globally.</p>
+      </div>
+      <div class="mvv-card fade-up delay-2">
+        <div class="mvv-icon">⚖️</div>
+        <h3 class="mvv-title">Our Values</h3>
+        <p class="mvv-text">Excellence. Professionalism. Innovation. Commitment. These are not aspirations — they are the daily standards by which every engagement at OAL is measured.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════ PARTNER QUOTE ═════ -->
+<section style="background:var(--navy-pale); padding:100px 0; border-top:1px solid var(--border);">
+  <div class="container">
+    <div style="max-width:860px; margin:0 auto; text-align:center;" class="fade-up">
+      <div style="font-size:80px; font-family:'Cormorant Garamond',serif; color:var(--navy); line-height:0.6; margin-bottom:32px; opacity:0.15;">"</div>
+      <blockquote style="font-family:'Cormorant Garamond',serif; font-size:clamp(20px,2.5vw,30px); font-weight:600; color:var(--navy); line-height:1.55; font-style:italic;">
+        Drawing upon our extensive background in the legal field and our profound comprehension of business dynamics, we have endeavoured to establish OAL as a firm that surpasses expectations in client service — making a meaningful impact on the advancement of a brighter world.
+      </blockquote>
+      <div style="margin-top:36px; display:flex; align-items:center; justify-content:center; gap:16px;">
+        <div style="width:40px; height:2px; background:var(--red);"></div>
+        <div>
+          <div style="font-weight:600; color:var(--navy); font-size:15px;">Yvonne Ezekiel</div>
+          <div style="font-size:12px; color:var(--text-light); letter-spacing:0.08em; text-transform:uppercase; margin-top:2px;">Managing Partner, OAL</div>
+        </div>
+        <div style="width:40px; height:2px; background:var(--red);"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════ OAL ACADEMY ═══════ -->
+<section class="academy-section">
+  <div class="container">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:0; border-radius:4px; overflow:hidden; box-shadow:0 24px 60px rgba(24,59,129,0.12);" id="academy-grid">
+      <div style="position:relative; min-height:420px; overflow:hidden;">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpxF6oE8gbXro-O_ecI1UA2A6NCgvxadCHKusqvyjpSwO0spjXSgltlBwI2Ernc3hF8jm7AoSPDT66kuChc4SrqLeLJV6jfpKd-ZIX_DqOiCGQ1kW9rVCZjt9PolZ3cCmSEEMOIg5HDpEjVWoISYgHZEHnQDFZsWEiXXwuzWda02LS4VhUaheAZLBHvKyhXf2q5s-ytx7MfA5H6W3p5KZshg-Lr7M0FUS0u82aR8MMFkFvalpmgcl3y0XP-sX2MSZoBsOLKFNVSX5S" alt="OAL Academy" style="width:100%; height:100%; object-fit:cover;"/>
+        <div style="position:absolute; inset:0; background:linear-gradient(to right, rgba(24,59,129,0.25), transparent);"></div>
+      </div>
+      <div style="background:var(--navy); padding:60px 56px; display:flex; flex-direction:column; justify-content:center;">
+        <div class="section-label" style="color:#ffb3bc;">Educational Excellence</div>
+        <div style="width:48px; height:2px; background:var(--red); margin-bottom:28px;"></div>
+        <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(28px,3vw,44px); font-weight:700; color:#fff; line-height:1.1; margin-bottom:20px;">OAL Academy</h2>
+        <p style="color:rgba(255,255,255,0.62); font-size:15px; line-height:1.75; margin-bottom:20px;">
+          Advancing legal knowledge through specialised training, workshops, and certification programs designed for the modern legal professional.
+        </p>
+        <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:32px;">
+          <span style="background:rgba(176,28,46,0.2); border:1px solid rgba(176,28,46,0.4); color:#ffb3bc; font-size:10px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; padding:5px 12px; border-radius:2px;">✓ NBA-ICLE Approved</span>
+          <span style="background:rgba(176,28,46,0.2); border:1px solid rgba(176,28,46,0.4); color:#ffb3bc; font-size:10px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; padding:5px 12px; border-radius:2px;">✓ 100% Virtual</span>
+          <span style="background:rgba(176,28,46,0.2); border:1px solid rgba(176,28,46,0.4); color:#ffb3bc; font-size:10px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; padding:5px 12px; border-radius:2px;">✓ Earn 1 CPD Point</span>
+          <span style="background:rgba(176,28,46,0.2); border:1px solid rgba(176,28,46,0.4); color:#ffb3bc; font-size:10px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; padding:5px 12px; border-radius:2px;">✓ Certification</span>
+        </div>
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <a href="#" class="btn-red">Explore Programs</a>
+          <a href="#" class="btn-outline-white">View Publications</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════ INSIGHTS ══════════ -->
+<section style="background:#fff; padding:100px 0;">
+  <div class="container">
+    <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:56px;">
+      <div class="fade-up">
+        <div class="section-label">Knowledge Hub</div>
+        <div class="navy-line"></div>
+        <h2 class="section-title">Latest Insights</h2>
+      </div>
+      <a href="#" class="btn-outline-navy fade-up delay-1" style="white-space:nowrap;">View All Insights</a>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:28px;" id="insights-grid">
+
+      <article class="insight-card fade-up">
+        <div style="overflow:hidden;"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjmUDNE0zm3qQwhXBh8lSOzXDpllKCtLgi8oGnfhDl6_jITMIdqUBdeEO70Gt0gqlY0FRdXQllKiI4-Y_7Cj7H9TP19-wWa__LuAZxwWTN7_6Qvt6e_gj0DedS6MaxJIY-VAtCvontB2MTgCfd6ni4uK9ipUQCmXaAXuZRyRriSrS3h8ywXfrmJ3VgIg0d9NByskvgGhyn6Wlqmz5svRJN9Dr_g3LgTheZIYD21rPjgOhZuPoSt7A4cuv1oC8TzAEUjTg8TWt33DER" alt="Arbitration"/></div>
+        <div style="padding:28px;">
+          <span class="insight-tag">Arbitration</span>
+          <h3 class="insight-title">The Future of International Arbitration in Nigeria</h3>
+          <p style="font-size:13px; color:var(--text-light); margin-top:10px; line-height:1.65;">Exploring recent legislative changes and their impact on cross-border dispute resolution in West Africa.</p>
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-top:24px; padding-top:20px; border-top:1px solid var(--border);">
+            <span style="font-size:11px; color:var(--text-light);">Dec 2024</span>
+            <a href="#" style="font-size:12px; font-weight:600; color:var(--navy); letter-spacing:0.06em; text-transform:uppercase; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--navy)'">Read More →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="insight-card fade-up delay-1">
+        <div style="overflow:hidden;"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwOomu2e1pQkYGg3qK0tteesuOIr93SgicJxU_GYY0qVjRwPvgeq_ioPY5lIuYPZPZwPL72KjHB8_FLJBq2Rb0FrfCBXXPR1JPQrzCohZeJKO8sXmKbHDH0xlAsDX0hJyRwLcOq35KmS28dRnlECz7LWET2QR8Hc9IUrS9Uyn7Ry-cHsC082XG2v5Ag1K5Nwe00Sl3eyPa3-hOya5AHgjB4UQD1Al_CeAFVBIkAqXTBB4o-4Jp5NajserBqB71mWPqSpHluF0ZWEaR" alt="Maritime"/></div>
+        <div style="padding:28px;">
+          <span class="insight-tag">Maritime Law</span>
+          <h3 class="insight-title">Navigating Maritime Regulations in West Africa</h3>
+          <p style="font-size:13px; color:var(--text-light); margin-top:10px; line-height:1.65;">Key legal considerations for shipping companies operating within the Gulf of Guinea.</p>
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-top:24px; padding-top:20px; border-top:1px solid var(--border);">
+            <span style="font-size:11px; color:var(--text-light);">Nov 2024</span>
+            <a href="#" style="font-size:12px; font-weight:600; color:var(--navy); letter-spacing:0.06em; text-transform:uppercase; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--navy)'">Read More →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="insight-card fade-up delay-2">
+        <div style="overflow:hidden;"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdH7DcKeCgZYgWYwWdPZXnphTW_Um4t2va-NfhvNSoDQVRgu827B2oNGUn4DRRXK81qjNpZw7O5pHOorDJQpgOUURNiAw7rNz0UzwfdO0Cqe-WzWlY4qwwlG0lQmoqLq4_EbvpczAHX_znA4uw9QA1ZD4_ZTp6mIMQ8hn3lR7gOZZcrkf3a44rE2wf-7doRA3TySm_QBbIlsi9-JLjWJc-_3nNzdrAbfRguoHjYRNBXZLl3F1Ci2GUY2bLMZojKoV5on3xU_Q0kgU-" alt="Tech Law"/></div>
+        <div style="padding:28px;">
+          <span class="insight-tag">Tech Law</span>
+          <h3 class="insight-title">Digital Privacy: New Compliance Mandates for 2025</h3>
+          <p style="font-size:13px; color:var(--text-light); margin-top:10px; line-height:1.65;">What the new Data Protection Act means for Nigerian startups and multinational firms.</p>
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-top:24px; padding-top:20px; border-top:1px solid var(--border);">
+            <span style="font-size:11px; color:var(--text-light);">Oct 2024</span>
+            <a href="#" style="font-size:12px; font-weight:600; color:var(--navy); letter-spacing:0.06em; text-transform:uppercase; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--navy)'">Read More →</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════ CLIENT STRIP ═══════ -->
+<section style="background:var(--off-white); padding:60px 0; border-top:1px solid var(--border);">
+  <div class="container">
+    <p style="text-align:center; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--text-light); margin-bottom:40px; font-weight:500;">Trusted by Industry Leaders</p>
+    <div style="display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:40px 60px; opacity:0.5; filter:grayscale(1); transition:all 0.35s;" onmouseover="this.style.opacity='0.9';this.style.filter='grayscale(0)'" onmouseout="this.style.opacity='0.5';this.style.filter='grayscale(1)'">
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiEH39wUyjqgOjB9ji53RRYqCV7LiWzvq_Ld3klnKGsI56XS00XiF1ejOuxZxQtOXTqvu3lHOXS8Cyj8kVEdW2rvhziafX7q0bULuP2FwF5mU8JOVTxrxVG3m_DKinNfaQWv7z8NYZb8MuxKrX3qiK0ZB195dk5d159PdX-0GfcgAIxpgyqB7lS-LdV-5ieUj-ksnxccAysZ-B9Q6EzGIEVQixXJAE1TBDsxch2LaPvxFKevOGeiDJjhg_TwGyKAUEiMlkA-mKrPSA" alt="Client" style="height:30px; object-fit:contain;"/>
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkYuAjCFUEijHRy8o9J6oDK7S3fO3p1WplcAmAx8yI6nB5A0sJgdngyg3IHorWD8wVFrphksTofAeoOicNQqS5tkH79n2FxO5c74Q_6yB7MKW40YZ9nrOF7g0WD2T1lO6Xbu840W7w5eRb3yWZVLIJQEiN0C8XoxpU4m_dkghlPRv22-89WTT34nhvfCkyz_yx0qUpr90NTuDW3gayrDwiMM7UwAF8VeiXLvtx6h43Ni4aXjoe3DUpHI_KEKnTB50cc3JN8KRnNjLX" alt="Client" style="height:36px; object-fit:contain;"/>
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMQVcLJj-K2oc8Pl1JwJ51O4cAOyLqQWfHuCw0N3azjwNKhcRCTHenzKsjn09NbzxAAu3bajfvOTuBrD_G-Ygcc82DXvlOmOZ97KCqe4QKyspFz0AMIslnk7U3WtxZt7TWdNSXRz5tPgKqf3YTIj5uKPwKr-OJNloTt7JDgQ86oIMladDMpjLWubLspN1BrKeKDUrUCq1VJ8Xj9mJzU5APUGHCZynG8wc1HsdOJPdfadEiSDeogq2Yf-79NMtLw82N3aQRlW0-xHwY" alt="Client" style="height:36px; object-fit:contain;"/>
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMxYldLaK1TuOlozKhbiGlYfo03rSHTWHs3ChyfFd4Cz-Xht1gjS83ana7Xa60tdTt5iLusOOVgIK6ThU9FyjmrIKe53XcIN9FzyiejTG_5BVO1PeS9cT1ln4EBmX5Bk00z2Qr_VtnQR0H1xhTqp0UG0qgHX3niH3nX_xNgojlItiDw46GmpE6XjgSfeV16hjN5bl50eErDdbEiwduxOtO7Y1kg8VER-fcqB_YV27aLUY05_Bw5eWfj-JDScs7Ck0djF52kfqwN6EU" alt="Client" style="height:36px; object-fit:contain;"/>
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwWXShOXvrCnczrVAp1I0AGNTrGmGnygf9MQAQPz6fzwVUYJyWBkHeLiL4-fSqf1ZkR5bLCxQN2UyPjMVI02ZUN85OaBG-M72Y-PUCMRp3RuFtyuB68w_4-LyxXCgCH0Yy3xIi2y-nVM_t20kjDVs7unJX2UFtcsuM1hMM0okk4uTgJxZTASs1UGHhA5UYeuLa0BmMcjxPAY1zHMTBl2mvAAkczFaG2hzVBDuc-ewtDMstYe-yBL4RBz3sJHlAM5LbYDMEVvZ6Dkv9" alt="Client" style="height:30px; object-fit:contain;"/>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════ CTA BANNER ════════ -->
+<section class="cta-section">
+  <div class="container" style="position:relative; z-index:1; text-align:center;">
+    <div class="fade-up">
+      <div style="font-size:11px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.65); margin-bottom:14px;">Ready to Begin?</div>
+      <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(32px,4vw,58px); font-weight:700; color:#fff; line-height:1.1; margin-bottom:20px;">
+        Let's Work Together<br/><em style="font-style:italic; color:rgba(255,255,255,0.8);">on What Matters Most.</em>
+      </h2>
+      <p style="color:rgba(255,255,255,0.7); font-size:16px; max-width:460px; margin:0 auto 40px; line-height:1.7;">
+        Whether you need urgent legal advice or a long-term strategic partner, OAL's team of experts is ready to engage.
+      </p>
+      <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+        <a href="#" class="btn-navy">Book a Consultation →</a>
+        <a href="v2-contact.html" class="btn-outline-white">View Contact Details</a>
+      </div>
+      <div style="margin-top:48px; display:flex; justify-content:center; gap:40px; flex-wrap:wrap; padding-top:40px; border-top:1px solid rgba(255,255,255,0.15);">
+        <div style="text-align:left;">
+          <div style="font-size:10px; color:rgba(255,255,255,0.5); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:4px;">Call Us</div>
+          <div style="color:#fff; font-size:15px; font-weight:500;">+234 803 724 2453</div>
+        </div>
+        <div style="width:1px; background:rgba(255,255,255,0.15);"></div>
+        <div style="text-align:left;">
+          <div style="font-size:10px; color:rgba(255,255,255,0.5); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:4px;">Email Us</div>
+          <div style="color:#fff; font-size:15px; font-weight:500;">Clientsupport@oal.law</div>
+        </div>
+        <div style="width:1px; background:rgba(255,255,255,0.15);"></div>
+        <div style="text-align:left;">
+          <div style="font-size:10px; color:rgba(255,255,255,0.5); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:4px;">Visit Us</div>
+          <div style="color:#fff; font-size:15px; font-weight:500;">10A Ilabere Street, Ikoyi, Lagos</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════ FOOTER ════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div style="display:grid; gap:48px; padding-bottom:60px; border-bottom:1px solid rgba(255,255,255,0.07);" id="footer-grid">
+
+      <!-- Brand -->
+      <div>
+        <!-- Logo: OA red, L navy — but on dark background both lighten -->
+        <div style="font-family:'Cormorant Garamond',serif; font-size:32px; font-weight:700; line-height:1; margin-bottom:4px;">
+          <span style="color:#e05060;">OA</span><span style="color:#7fa8ff;">L</span>
+        </div>
+        <div style="font-size:8px; letter-spacing:0.22em; color:rgba(255,255,255,0.3); text-transform:uppercase; font-weight:500; margin-bottom:20px;">Olisa Agbakoba Legal</div>
+        <p style="font-size:13px; color:rgba(255,255,255,0.42); line-height:1.75; max-width:280px; margin-bottom:28px;">A multi-specialist law firm providing comprehensive legal services with a focus on commercial law, energy, arbitration, and policy advocacy.</p>
+        <div style="display:flex; gap:10px;">
+          <a href="#" style="width:34px; height:34px; border:1px solid rgba(255,255,255,0.12); border-radius:2px; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.4); font-size:13px; text-decoration:none; font-weight:700; transition:all 0.2s;" onmouseover="this.style.borderColor='var(--red-light)';this.style.color='var(--red-light)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.12)';this.style.color='rgba(255,255,255,0.4)'">in</a>
+          <a href="#" style="width:34px; height:34px; border:1px solid rgba(255,255,255,0.12); border-radius:2px; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.4); font-size:13px; text-decoration:none; font-weight:700; transition:all 0.2s;" onmouseover="this.style.borderColor='var(--red-light)';this.style.color='var(--red-light)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.12)';this.style.color='rgba(255,255,255,0.4)'">tw</a>
+          <a href="#" style="width:34px; height:34px; border:1px solid rgba(255,255,255,0.12); border-radius:2px; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.4); font-size:13px; text-decoration:none; font-weight:700; transition:all 0.2s;" onmouseover="this.style.borderColor='var(--red-light)';this.style.color='var(--red-light)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.12)';this.style.color='rgba(255,255,255,0.4)'">fb</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-heading">Quick Links</div>
+        <a href="v2-index.html" class="footer-link">Home</a>
+        <a href="v2-about.html" class="footer-link">About Us</a>
+        <a href="v2-our-people.html" class="footer-link">Our People</a>
+        <a href="v2-practice-areas.html" class="footer-link">Practice Areas</a>
+        <a href="#" class="footer-link">OAL Academy</a>
+        <a href="#" class="footer-link">Insights</a>
+        <a href="v2-contact.html" class="footer-link">Contact</a>
+      </div>
+
+      <div>
+        <div class="footer-heading">Legal</div>
+        <a href="#" class="footer-link">Privacy Policy</a>
+        <a href="#" class="footer-link">Terms of Use</a>
+        <a href="#" class="footer-link">Disclaimer</a>
+        <a href="#" class="footer-link">Cookies Policy</a>
+        <a href="#" class="footer-link">Sitemap</a>
+      </div>
+
+      <div>
+        <div class="footer-heading">Our Offices</div>
+        <div style="margin-bottom:14px;">
+          <div style="font-size:10px; color:var(--red-light); font-weight:600; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:4px;">Lagos (HQ)</div>
+          <div style="font-size:13px; color:rgba(255,255,255,0.42); line-height:1.6;">10A Ilabere Street,<br/>Ikoyi, Lagos</div>
+        </div>
+        <div style="margin-bottom:14px;">
+          <div style="font-size:10px; color:var(--red-light); font-weight:600; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:4px;">Abuja</div>
+          <div style="font-size:13px; color:rgba(255,255,255,0.42); line-height:1.6;">FCT, Abuja</div>
+        </div>
+        <div>
+          <div style="font-size:10px; color:var(--red-light); font-weight:600; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:4px;">Port Harcourt</div>
+          <div style="font-size:13px; color:rgba(255,255,255,0.42); line-height:1.6;">Port Harcourt, Rivers State</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; padding-top:28px; flex-wrap:wrap; gap:12px;">
+      <p style="font-size:12px; color:rgba(255,255,255,0.25);">© 2025 Olisa Agbakoba Legal. All Rights Reserved.</p>
+      <p style="font-size:12px; color:rgba(255,255,255,0.25);">Brand Identity Version · OAL</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ════════════════════════════════════════ SCRIPTS ═══════════ -->
+<script>
+  // Navbar scroll
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) { navbar.classList.remove('top'); navbar.classList.add('scrolled'); }
+    else { navbar.classList.remove('scrolled'); navbar.classList.add('top'); }
+  });
+
+  // Mobile menu
+  function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Responsive grids
+  function applyResponsive() {
+    const w = window.innerWidth;
+
+    const aboutG = document.getElementById('about-grid');
+    if (aboutG) aboutG.style.gridTemplateColumns = w < 768 ? '1fr' : '1fr 1fr';
+
+    const bentoG = document.getElementById('bento-grid');
+    if (bentoG) {
+      if (w < 768) {
+        bentoG.style.gridTemplateColumns = '1fr';
+        bentoG.style.gridTemplateRows = 'auto';
+        bentoG.querySelectorAll('.practice-card').forEach(c => { c.style.gridColumn='span 1'; c.style.gridRow='span 1'; c.style.height='240px'; });
+      } else {
+        bentoG.style.gridTemplateColumns = 'repeat(12,1fr)';
+        bentoG.style.gridTemplateRows = '280px 280px';
+      }
+    }
+
+    const mvvG = document.getElementById('mvv-grid');
+    if (mvvG) mvvG.style.gridTemplateColumns = w < 768 ? '1fr' : 'repeat(3,1fr)';
+
+    const acadG = document.getElementById('academy-grid');
+    if (acadG) acadG.style.gridTemplateColumns = w < 768 ? '1fr' : '1fr 1fr';
+
+    const insG = document.getElementById('insights-grid');
+    if (insG) insG.style.gridTemplateColumns = w < 640 ? '1fr' : w < 1024 ? '1fr 1fr' : 'repeat(3,1fr)';
+
+    const statsG = document.getElementById('stats-grid');
+    if (statsG) statsG.style.gridTemplateColumns = w < 640 ? '1fr 1fr' : 'repeat(4,1fr)';
+
+    const footG = document.getElementById('footer-grid');
+    if (footG) footG.style.gridTemplateColumns = w < 768 ? '1fr' : w < 1024 ? '1fr 1fr' : '2fr 1fr 1fr 1fr';
+  }
+
+  applyResponsive();
+  window.addEventListener('resize', applyResponsive);
+</script>
+
+</body>
+</html>
